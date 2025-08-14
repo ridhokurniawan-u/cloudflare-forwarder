@@ -16,7 +16,7 @@ async function handleRequest(request) {
   const originalIP = request.headers.get('cf-connecting-ip') || 'unknown'
 
   const targetUrl = new URL(request.url)
-  targetUrl.hostname = 'cms.mertani.my.id'
+  targetUrl.hostname = '{BaseURL}'
 
   const newHeaders = new Headers(request.headers)
   newHeaders.set('X-Forwarded-For', originalIP)
