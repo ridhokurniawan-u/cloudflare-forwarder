@@ -14,7 +14,13 @@ addEventListener('fetch', event => {
 
 async function handleRequest(request) {
   const originalIP = request.headers.get('cf-connecting-ip') || 'unknown'
-
+    return new Response(JSON.stringify({
+    MyIP: originalIP,
+    forwardedFor: request.headers.get('x-forwarded-for')
+  }, null, 2), {
+    headers: { 'Content-Type': 'application/json' }
+  })
+  
   const targetUrl = new URL(request.url)
   targetUrl.hostname = '{BaseURL}'
 
